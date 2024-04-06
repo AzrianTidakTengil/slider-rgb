@@ -9,13 +9,39 @@
   <body class="style">
     <div class="container">
       <div>
-        <h2>rgb(0,0,0)</h2>
+        <h2 id="post"></h2>
         <div class="input">
-          <input type="range" name="slider-r" id="#red" />
-          <input type="range" name="slider-b" id="#green" />
+          <input
+            type="range"
+            name="slider-r"
+            id="red"
+            min="1"
+            max="255"
+            value="50"
+          />
+          <input
+            type="range"
+            name="slider-b"
+            id="green"
+            min="1"
+            max="255"
+            value="50"
+          />
           <input type="range" name="slider-g" id="#blue" />
         </div>
       </div>
     </div>
+    <script>
+      var red = document.getElementById("red");
+      var green = document.getElementById("green");
+      var post = document.getElementById("post");
+      post.innerHTML = "rgb(" + red.value + ", " + green.value + ")";
+
+      var gl = red
+
+      red.oninput = function () {
+          post.innerHTML = "rgb(" + this.value + ")";
+        };
+    </script>
   </body>
 </html>
