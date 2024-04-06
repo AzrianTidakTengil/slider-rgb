@@ -6,7 +6,7 @@
     <title>rgb slider by hikoyu</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="style">
+  <body id="style">
     <div class="container">
       <div>
         <h2 id="post"></h2>
@@ -15,19 +15,26 @@
             type="range"
             name="slider-r"
             id="red"
-            min="1"
+            min="0"
             max="255"
-            value="50"
+            value="255"
           />
           <input
             type="range"
             name="slider-b"
             id="green"
-            min="1"
+            min="0"
             max="255"
-            value="50"
+            value="255"
           />
-          <input type="range" name="slider-g" id="#blue" />
+          <input
+            type="range"
+            name="slider-g"
+            id="blue"
+            min="0"
+            max="255"
+            value="255"
+          />
         </div>
       </div>
     </div>
@@ -35,13 +42,30 @@
       var red = document.getElementById("red");
       var green = document.getElementById("green");
       var post = document.getElementById("post");
-      post.innerHTML = "rgb(" + red.value + ", " + green.value + ")";
+      var blue = document.getElementById("blue");
+      post.innerHTML =
+        "rgb(" + red.value + ", " + green.value + ", " + blue.value + ")";
 
-      var gl = red
+      var gl = document.getElementById("style");
 
       red.oninput = function () {
-          post.innerHTML = "rgb(" + this.value + ")";
-        };
+        var local =
+          "rgb(" + this.value + ", " + green.value + ", " + blue.value + ")";
+        post.innerHTML = local;
+        gl.style.backgroundColor = local;
+      };
+      green.oninput = function () {
+        var local =
+          "rgb(" + red.value + ", " + this.value + ", " + blue.value + ")";
+        post.innerHTML = local;
+        gl.style.backgroundColor = local;
+      };
+      blue.oninput = function () {
+        var local =
+          "rgb(" + red.value + ", " + green.value + ", " + this.value + ")";
+        post.innerHTML = local;
+        gl.style.backgroundColor = local;
+      };
     </script>
   </body>
 </html>
